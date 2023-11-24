@@ -37,13 +37,13 @@ const Landing = () => {
 							spacing={4}
 						>
 							<Grid item>
-								<Button variant='contained' onClick={() => navigate('/login')}>
+								<Button variant='outlined' onClick={() => navigate('/login')}>
 									Login
 								</Button>
 							</Grid>
 
 							<Grid item>
-								<Button variant='contained' onClick={() => navigate('/signup')}>
+								<Button variant='outlined' onClick={() => navigate('/signup')}>
 									Register
 								</Button>
 							</Grid>

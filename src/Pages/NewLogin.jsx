@@ -31,13 +31,26 @@ const Login = () => {
 	return (
 		<PI title='signup'>
 			<Container fixed maxWidth='sm'>
-				<h1 className='login--title'>Sign up</h1>
+				<h1
+					style={{
+						fontSize: '3.2em',
+						lineHeight: 1.1,
+						color: 'white',
+						marginBottom: 20,
+					}}
+				>
+					Log in
+				</h1>
 				<Paper
 					elevation={5}
 					style={{
 						display: 'grid',
 						padding: 20,
 						justifyContent: 'center',
+						alignItems: 'space-between',
+						alignContent: 'space-between',
+						padding: '10vh',
+						backgroundColor: '#f4f4f6',
 					}}
 				>
 					<Button
@@ -95,12 +108,14 @@ const Login = () => {
 					<Button variant='contained' onClick={() => login(email, password)}>
 						Log in
 					</Button>
-					<p className='signup-writeup' style={{ textAlign: 'center' }}>
-						New User? Sign Up
-						<Link className='signup' to='/signup'>
-							Sign Up
-						</Link>
-					</p>
+					<div style={{ marginTop: 20 }}>
+						<p className='signup-writeup' style={{ textAlign: 'center' }}>
+							New User?
+							<Link className='signup' to='/signup'>
+								Sign Up
+							</Link>
+						</p>
+					</div>
 				</Paper>
 			</Container>
 		</PI>
