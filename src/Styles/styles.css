@@ -1,0 +1,26 @@
+.body {
+  background: #343543;
+}
+.general--btn {
+  border: none;
+  outline: none;
+  padding: 9px 15px;
+  background: #343543;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.3rem;
+  border-radius: 6px;
+  transition: all 0.5s ease;
+}
+.general--btn:hover {
+  transform-origin: center;
+  transform: scale(1.02);
+  transition: all 0.5s ease-in;
+}
+@media screen and (max-width: 570px) {
+  .general--btn {
+    font-size: 0.8rem;
+  }
+}
