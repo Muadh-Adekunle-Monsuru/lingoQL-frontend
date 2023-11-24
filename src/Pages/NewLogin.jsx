@@ -12,19 +12,17 @@ import Container from '@mui/material/Container';
 import { account, ID } from '../Api/Appwrite';
 
 import { Outlet, useNavigate } from 'react-router-dom';
-const Signup = () => {
-	const [name, setName] = useState('');
+const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [user, setUser] = useState(null);
 
 	const navigate = useNavigate();
-	async function register(email, password, name) {
+
+	async function login(email, password) {
 		try {
-			await account.create(ID.unique(), email, password, name);
 			const loggedIn = await account.createEmailSession(email, password);
 			setUser(loggedIn);
-			console.log(user);
 			navigate('/chat');
 		} catch (e) {
 			console.log(e);
@@ -59,7 +57,7 @@ const Signup = () => {
 						or
 					</p>
 					<p style={{ fontSize: 17, fontWeight: 500, textAlign: 'center' }}>
-						Sign up with Email
+						Login with Email
 					</p>
 					<Box
 						component='form'
@@ -74,14 +72,6 @@ const Signup = () => {
 							display: 'grid',
 						}}
 					>
-						<TextField
-							id='outlined-basic'
-							label='Full Name'
-							variant='outlined'
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-							required
-						/>
 						<TextField
 							id='outlined-basic'
 							label='Email'
@@ -102,16 +92,13 @@ const Signup = () => {
 						/>
 					</Box>
 
-					<Button
-						variant='contained'
-						onClick={() => register(email, password, name)}
-					>
-						Register
+					<Button variant='contained' onClick={() => login(email, password)}>
+						Log in
 					</Button>
 					<p className='signup-writeup' style={{ textAlign: 'center' }}>
-						Already have an account?
-						<Link className='signup' to='/login'>
-							Log in
+						New User? Sign Up
+						<Link className='signup' to='/signup'>
+							Sign Up
 						</Link>
 					</p>
 				</Paper>
@@ -120,4 +107,4 @@ const Signup = () => {
 	);
 };
 
-export default Signup;
+export default Login;
