@@ -1,0 +1,82 @@
+/* login */
+.signup {
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding-left: 0.5rem;
+  color: #343543;
+}
+.signup-writeup {
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: "Lexend Deca", sans-serif;
+}
+.login--wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.login--content {
+  border: 1px solid #cbe5ff83;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: #fff;
+}
+.login--form {
+  width: 30rem;
+}
+.forgot {
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  text-align: right;
+}
+.form {
+  max-width: 80%;
+  margin: auto;
+  width: 40rem;
+  background-color: #fff;
+  /* flex: 3; */
+  /* box-shadow: 1px 0px 15px #858085; */
+  border-radius: 20px;
+  padding: 5px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.entry--container {
+  padding: 1rem 4rem;
+  width: 100%;
+}
+.entry--container input {
+  outline: none;
+  border: 1px solid #343543;
+  height: 50px;
+  border-radius: 0.9rem;
+  width: 100%;
+  background: #eee;
+  padding: 8px;
+}
+
+@media screen and (max-width: 769px) {
+  .login--form {
+    width: 25rem;
+  }
+}
+@media screen and (max-width: 585px) {
+  .login--form {
+    width: 20rem;
+  }
+}
+@media only screen and (max-width: 385px) {
+  .login--form {
+    width: 18rem;
+  }
+}
