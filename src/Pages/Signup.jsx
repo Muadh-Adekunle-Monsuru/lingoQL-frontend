@@ -33,13 +33,27 @@ const Signup = () => {
 	return (
 		<PI title='signup'>
 			<Container fixed maxWidth='sm'>
-				<h1 className='login--title'>Sign up</h1>
+				<h1
+					className='login--title'
+					style={{
+						fontSize: '3.2em',
+						lineHeight: 1.1,
+						color: 'white',
+						marginBottom: 20,
+					}}
+				>
+					Sign up
+				</h1>
 				<Paper
 					elevation={5}
 					style={{
 						display: 'grid',
 						padding: 20,
 						justifyContent: 'center',
+						alignItems: 'space-between',
+						alignContent: 'space-between',
+						padding: '5vh',
+						backgroundColor: '#f4f4f6',
 					}}
 				>
 					<Button
