@@ -1,6 +1,6 @@
 import React from 'react';
 import MessageBox from '../Components/MessageBox/MessageBox';
-import '../Styles/Styles.css';
+// import '../Styles/Styles.css';
 import './Pages.css';
 import Header from '../Components/Header/Header';
 
