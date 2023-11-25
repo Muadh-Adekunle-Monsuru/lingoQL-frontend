@@ -65,7 +65,6 @@ const Signup = () => {
 					elevation={5}
 					style={{
 						display: 'grid',
-						padding: 20,
 						justifyContent: 'center',
 						alignItems: 'space-between',
 						borderRadius: '16px',
