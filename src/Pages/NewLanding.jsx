@@ -11,9 +11,9 @@ const NewLanding = () => {
 	const [email, setEmail] = useState('');
 	const navigate = useNavigate();
 	return (
-		<PI title='Home'>
-			<section class='w-full h-screen py-12 md:py-24 lg:py-32 xl:py-48 bg-black'>
-				<div class='container px-4 md:px-6'>
+		<PI title='Home' class='h-full'>
+			<section class='w-full h-full py-12 md:py-24 lg:py-32 xl:py-48 bg-black'>
+				<div class='px-4 md:px-6'>
 					<div
 						class='flex justify-between items-center mb-8 w-full fixed top-0 left-0 bg-black px-4 py-2'
 						id='cwt01doa3o'

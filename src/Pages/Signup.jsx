@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import LinearProgress from '@mui/material/LinearProgress';
+
 import { account, ID } from '../Api/Appwrite';
 
 import Header from '../Components/Header/Header';
@@ -19,6 +21,7 @@ const Signup = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(false);
 
 	const navigate = useNavigate();
 	const register = async (email, password, name) => {
@@ -28,6 +31,7 @@ const Signup = () => {
 			return toast.error('password must be atleast 8 characters!');
 		}
 		try {
+			setLoading(true);
 			await account.create(ID.unique(), email, password, name);
 			const loggedIn = await account.createEmailSession(email, password);
 			setUser(loggedIn);
@@ -35,8 +39,8 @@ const Signup = () => {
 			toast.success('You successfully signed up!');
 			navigate('/upload/database');
 		} catch (e) {
+			setLoading(false);
 			toast.error('Something went wrong, check your password and email');
-
 			console.log(e);
 		}
 	};
@@ -93,6 +97,7 @@ const Signup = () => {
 						Sign up with Email
 					</p>
 					<br />
+					{loading && <LinearProgress />}
 					<Box
 						component='form'
 						sx={{

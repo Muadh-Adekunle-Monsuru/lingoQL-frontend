@@ -13,12 +13,15 @@ import { account, ID } from '../Api/Appwrite';
 import Header from '../Components/Header/Header';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import LinearProgress from '@mui/material/LinearProgress';
+
 const Login = () => {
 	const { params } = useParams();
 	const [email, setEmail] = useState(params);
 	const [password, setPassword] = useState('');
 	const [user, setUser] = useState(null);
 
+	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 
 	const login = async (email, password) => {
@@ -28,11 +31,13 @@ const Login = () => {
 			return toast.error('password must be atleast 8 characters!');
 		}
 		try {
+			setLoading(true);
 			const loggedIn = await account.createEmailSession(email, password);
 			setUser(loggedIn);
 			toast.success('Login successful!');
 			navigate('/chat');
 		} catch (e) {
+			setLoading(false);
 			console.log(e);
 			toast.error('Something went wrong, check your password and email');
 		}
@@ -89,6 +94,8 @@ const Login = () => {
 						Login with Email
 					</p>
 					<br />
+					{loading && <LinearProgress />}
+
 					<Box
 						component='form'
 						sx={{

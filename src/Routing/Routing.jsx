@@ -15,8 +15,8 @@ const Routing = () => {
 	return (
 		<Routes>
 			<Route path='home' element={<Navigate to='/' />} />
-			<Route path='chat' element={<Chats />} />
-			<Route path='newchat' element={<NewChats />} />
+			{/* <Route path='chat' element={<Chats />} /> */}
+			<Route path='chat' element={<NewChats />} />
 			<Route path='upload/database' element={<CSV />} />
 			<Route path='404' element={<NotFound />} />
 			<Route path='*' element={<NotFound />} />
