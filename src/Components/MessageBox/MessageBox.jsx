@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./MessageBox.css";
 import { BsFillSendFill } from "react-icons/bs";
+import TextareaAutosize from "react-textarea-autosize";
 
 const MessageBox = () => {
   const [inputValue, setInputValue] = useState("");
@@ -18,8 +19,11 @@ const MessageBox = () => {
       <section className="message--box">
         <div className="message-box-wrapper">
           <form className="message" onSubmit={handleSubmit}>
-            <textarea
+            <TextareaAutosize
               className="message--input"
+              rows={2}
+              maxRows={5}
+              autoFocus={true}
               placeholder="Type in what you want to know"
               value={inputValue}
               onChange={handleInputChange}

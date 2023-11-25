@@ -1,3 +1,39 @@
+/* Styles for the Chat interface */
+.chat--interface {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+}
+.default--display {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding-top: 6rem;
+  justify-content: center;
+}
+
+.chat-suggest-qns {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 7rem;
+}
+.chat-suggest-qns p {
+  padding: 0.1rem 6rem;
+  margin: 0 2rem;
+  border-radius: 18px;
+  background: hsla(240, 2%, 53%, 0.13);
+  width: 100%;
+  color: hsl(240, 1%, 81%);
+  line-height: 2;
+  border: 2px solid hsla(240, 2%, 53%, 0.829);
+  font-size: 0.8rem;
+  font-family: "Lexend Deca", sans-serif;
+  outline: none;
+}
 /* login */
 .signup {
   font-weight: 600;
@@ -69,14 +105,35 @@
   .login--form {
     width: 25rem;
   }
+  .chat-suggest-qns {
+    margin-top: 8rem;
+    flex-direction: column;
+  }
+
+  .chat-suggest-qns p {
+    flex-direction: column;
+    margin: 0.7rem 0;
+  }
 }
 @media screen and (max-width: 585px) {
   .login--form {
     width: 20rem;
   }
+  .chat--text h1 {
+    font-size: 0.7rem;
+    padding: 1rem;
+  }
+  .chat-suggest-qns {
+    margin-top: 8rem;
+    padding: 0 1rem;
+    flex-direction: column;
+  }
 }
-@media only screen and (max-width: 385px) {
+@media only screen and (max-width: 430px) {
   .login--form {
     width: 18rem;
+  }
+  .chat-suggest-qns {
+    margin-top: 4rem;
   }
 }
