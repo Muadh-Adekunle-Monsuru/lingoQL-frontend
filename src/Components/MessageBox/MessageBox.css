@@ -12,7 +12,7 @@
   max-width: 70%;
   padding-right: 15px;
   outline: none;
-  border: 1px solid hsla(240, 2%, 53%, 0.829);
+  border: 2px solid hsla(240, 2%, 53%, 0.829);
 }
 .message--input {
   padding: 0.9rem 1.2rem;
@@ -21,10 +21,8 @@
   width: 100%;
   color: hsl(240, 1%, 81%);
   resize: none;
-  height: auto;
-  max-height: 45px;
   overflow: hidden;
-  line-height: 1.7;
+  line-height: 2;
   border: none;
   font-size: 0.8rem;
   font-family: "Lexend Deca", sans-serif;
@@ -70,11 +68,10 @@
 @media screen and (max-width: 570px) {
   .message {
     margin: 0.4rem;
-    height: 2.6rem;
-    max-width: 20rem;
+    min-height: 2.6rem;
+    max-width: 23.5rem;
   }
   .message--input {
-    height: 2.6rem;
     width: 100%;
     font-size: 0.63rem;
   }

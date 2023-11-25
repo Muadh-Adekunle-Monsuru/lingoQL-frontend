@@ -15,7 +15,7 @@ const Header = () => {
             </Link>
           </div>
           <div className="logo--text">
-            <Link to="/">
+            <Link className="logo--text" to="/">
               <h1 className="LingoQL">LingoQL</h1>
             </Link>
           </div>

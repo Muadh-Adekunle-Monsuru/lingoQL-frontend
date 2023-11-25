@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import { account, ID } from "../Api/Appwrite";
 
 import { Outlet, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,24 +20,34 @@ const Signup = () => {
   const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
-  async function register(email, password, name) {
+  const register = async (email, password, name) => {
+    if (name === "" || email === "" || password === "") {
+      toast.error("All fields are required");
+    } else if (password.length < 8) {
+      return toast.error("password must be atleast 8 characters!");
+    }
     try {
       await account.create(ID.unique(), email, password, name);
       const loggedIn = await account.createEmailSession(email, password);
       setUser(loggedIn);
       console.log(user);
+      toast.success("You successfully signed up!");
       navigate("/chat");
     } catch (e) {
+      toast.error("Something went wrong, check your password and email");
+
       console.log(e);
     }
-  }
+  };
   return (
     <PI title="signup">
       <Container fixed maxWidth="sm">
         <h1
           className="login--title"
           style={{
-            fontSize: "3.2em",
+            fontSize: "1.2em",
+            alignItems: "center",
+            textAlign: "center",
             lineHeight: 1.1,
             color: "white",
             marginBottom: 20,
@@ -51,11 +62,13 @@ const Signup = () => {
             padding: 20,
             justifyContent: "center",
             alignItems: "space-between",
+            borderRadius: "16px",
             alignContent: "space-between",
             padding: "5vh",
             backgroundColor: "#f4f4f6",
           }}
         >
+          <br />
           <Button
             variant="outlined"
             startIcon={<FcGoogle />}
@@ -69,12 +82,15 @@ const Signup = () => {
           >
             Continue with Google
           </Button>
+          <br />
           <p style={{ fontSize: 12, fontWeight: 500, textAlign: "center" }}>
             or
           </p>
+          <br />
           <p style={{ fontSize: 17, fontWeight: 500, textAlign: "center" }}>
             Sign up with Email
           </p>
+          <br />
           <Box
             component="form"
             sx={{
@@ -115,13 +131,14 @@ const Signup = () => {
               required
             />
           </Box>
-
+          <br />
           <Button
             variant="contained"
-            onClick={() => register(email, password, name)}
+            onClick={() => register(email, password, name, user)}
           >
             Register
           </Button>
+          <br />
           <p className="signup-writeup" style={{ textAlign: "center" }}>
             Already have an account?
             <Link className="signup" to="/login">
