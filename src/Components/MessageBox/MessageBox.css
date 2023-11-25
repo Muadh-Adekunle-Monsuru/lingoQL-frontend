@@ -52,7 +52,9 @@
   border-radius: 50%;
   transition: all 0.5s ease;
 }
-
+.message--btn:disabled {
+  opacity: 0.2;
+}
 .message-box-wrapper {
   justify-content: center;
   display: flex;

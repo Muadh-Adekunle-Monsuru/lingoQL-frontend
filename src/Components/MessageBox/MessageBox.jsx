@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MessageBox.css";
 import { BsFillSendFill } from "react-icons/bs";
 import TextareaAutosize from "react-textarea-autosize";
 
-const MessageBox = () => {
-  const [inputValue, setInputValue] = useState("");
-
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-    console.log(inputValue);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
+const MessageBox = ({
+  handleSubmit,
+  handleInputChange,
+  inputValue,
+  loading,
+}) => {
   return (
     <>
       <section className="message--box">
@@ -29,7 +24,11 @@ const MessageBox = () => {
               onChange={handleInputChange}
             />
             <span className="send--btn">
-              <button className="message--btn">
+              <button
+                className="message--btn"
+                onClick={handleSubmit}
+                disabled={!inputValue}
+              >
                 <BsFillSendFill className="send--btn" />
               </button>
             </span>
