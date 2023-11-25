@@ -62,7 +62,6 @@ const Login = () => {
 					elevation={5}
 					style={{
 						display: 'grid',
-						padding: 20,
 						justifyContent: 'center',
 						borderRadius: '16px',
 						alignItems: 'space-between',
