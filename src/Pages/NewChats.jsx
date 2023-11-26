@@ -122,7 +122,8 @@ const NewChats = () => {
 			{ position: 'right', type: 'text', title: user.name, text: message },
 		]);
 
-		sendMessage(message);
+		// sendMessage(message);
+		sendRequest();
 
 		setMessage('');
 	};
@@ -159,6 +160,35 @@ const NewChats = () => {
 		}
 	};
 
+	const messageRequest = JSON.stringify({
+		'dbType': { dbType },
+		'dbURI': { dbURI },
+		'userInput': { message },
+	});
+
+	const config = {
+		method: 'post',
+		maxBodyLength: Infinity,
+		url: 'https://lingoql-backend.onrender.com/api/lingo/query-your-db',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		data: { messageRequest },
+	};
+	const sendRequest = async () => {
+		try {
+			axios
+				.request(config)
+				.then((response) => {
+					console.log(JSON.stringify(response.data));
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		} catch (e) {
+			console.log(e);
+		}
+	};
 	return (
 		<>
 			<div className='flex flex-col h-screen bg-black'>
