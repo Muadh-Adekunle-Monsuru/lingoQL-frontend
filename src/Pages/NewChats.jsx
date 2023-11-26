@@ -71,7 +71,7 @@ const NewChats = () => {
 		const endPoint = 'https://api.openai.com/v1/chat/completions';
 		const headers = {
 			'Content-Type': 'application/json',
-			Authorization: `Bearer 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`,
+			Authorization: `Bearer {key}`,
 		};
 		const data = {
 			model: 'gpt-3.5-turbo',
