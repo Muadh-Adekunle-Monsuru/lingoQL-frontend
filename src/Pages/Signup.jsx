@@ -80,8 +80,8 @@ const Signup = () => {
 						onClick={() =>
 							account.createOAuth2Session(
 								'google',
-								'http://localhost:5173/chat',
-								'http://localhost:5173/404'
+								'https://lingoql.onrender.com/chat',
+								'https://lingoql.onrender.com/signup'
 							)
 						}
 					>

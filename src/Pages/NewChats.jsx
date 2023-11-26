@@ -10,12 +10,21 @@ import { account } from '../Api/Appwrite';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import newlogo from '/newlogo.png';
+import 'react-chat-elements/dist/main.css';
+import { MessageList } from 'react-chat-elements';
+import LinearProgress from '@mui/material/LinearProgress';
+
+import axios from 'axios';
+const messageListReferance = React.createRef();
+
 const NewChats = () => {
 	const navigate = useNavigate();
 	const [message, setMessage] = useState('');
 	const [user, setUser] = useState(null);
 	const [open, setOpen] = React.useState(false);
 	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [chatHistory, setChatHistory] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const init = async () => {
 		try {
 			const loggedIn = await account.get();
@@ -45,6 +54,50 @@ const NewChats = () => {
 	const id = canBeOpen ? 'transition-popper' : undefined;
 	const chipTexts = (value) => {
 		setMessage(value);
+	};
+	const handleSubmit = () => {
+		console.log('clicked');
+		if (message == '') return;
+		setChatHistory((prev) => [
+			...prev,
+			{ position: 'right', type: 'text', title: user, text: message },
+		]);
+
+		sendMessage(message);
+
+		setMessage('');
+	};
+	const sendMessage = async (message) => {
+		const endPoint = 'https://api.openai.com/v1/chat/completions';
+		const headers = {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer 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`,
+		};
+		const data = {
+			model: 'gpt-3.5-turbo',
+			messages: [{ role: 'user', content: message }],
+			temperature: 0.4,
+		};
+		setLoading(true);
+
+		try {
+			const response = await axios.post(endPoint, data, { headers: headers });
+			console.log(response);
+			setChatHistory((prev) => [
+				...prev,
+				{
+					position: 'left',
+					type: 'text',
+					title: 'LingoBot',
+					text: response.data.choices[0].message.content,
+				},
+			]);
+		} catch (error) {
+			console.error(error);
+			toast.error('something went wrong!');
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -97,51 +150,63 @@ const NewChats = () => {
 					</div>
 				</header>
 				<main class='flex-1 overflow-y-auto p-6'>
-					<div class='flex flex-col items-center justify-center h-full space-y-4'>
-						<h2 class='text-4xl font-semibold text-white'>
-							How can I help you today?
-						</h2>
-						<div class='flex space-x-2 flex-wrap'>
-							<div
-								class='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer
+					{chatHistory.length === 0 && (
+						<div class='flex flex-col items-center justify-center h-full space-y-4'>
+							<h2 class='text-4xl font-semibold text-white'>
+								How can I help you today?
+							</h2>
+							<div class='flex space-x-2 flex-wrap'>
+								<div
+									class='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer
 							
 							'
-								onClick={() => chipTexts("How's the weather today?")}
-							>
-								How's the weather today?
-							</div>
-							<div
-								class='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
-								onClick={() => chipTexts('Set an alarm for 7 AM.')}
-							>
-								Set an alarm for 7 AM.
-							</div>
-							<div
-								class='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
-								onClick={() => chipTexts('Find the nearest coffee shop.')}
-							>
-								Find the nearest coffee shop.
-							</div>
-							<div
-								class='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
-								onClick={() => chipTexts("What's the news today?")}
-							>
-								What's the news today?
+									onClick={() => chipTexts("How's the weather today?")}
+								>
+									How's the weather today?
+								</div>
+								<div
+									class='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
+									onClick={() => chipTexts('Set an alarm for 7 AM.')}
+								>
+									Set an alarm for 7 AM.
+								</div>
+								<div
+									class='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
+									onClick={() => chipTexts('Find the nearest coffee shop.')}
+								>
+									Find the nearest coffee shop.
+								</div>
+								<div
+									class='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
+									onClick={() => chipTexts("What's the news today?")}
+								>
+									What's the news today?
+								</div>
 							</div>
 						</div>
+					)}
+					<div>
+						<MessageList
+							className='message-list'
+							lockable={false}
+							toBottomHeight={'100%'}
+							dataSource={chatHistory}
+						/>
 					</div>
 				</main>
-				<footer class='p-6 border-t border-gray-200'>
+				<footer class='p-2 border-t border-gray-200'>
+					<div class='py-2'>{loading && <LinearProgress />}</div>
+
 					<div class='flex space-x-2'>
 						<input
-							class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex-1'
+							class='flex h-15  w-full rounded-md border border-input bg-background px-3 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex-1'
 							placeholder='Type your message here...'
 							value={message}
 							onChange={(e) => setMessage(e.target.value)}
 						/>
 						<button
-							class='inline-flex items-center bg-slate-300 justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2'
-							onClick={() => init()}
+							class='inline-flex items-center bg-slate-300 justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-5'
+							onClick={handleSubmit}
 						>
 							Send
 						</button>
