@@ -37,7 +37,7 @@ const Signup = () => {
 			setUser(loggedIn);
 			console.log(user);
 			toast.success('You successfully signed up!');
-			navigate('/upload/database');
+			navigate('/chat');
 		} catch (e) {
 			setLoading(false);
 			toast.error('Something went wrong, check your password and email');
