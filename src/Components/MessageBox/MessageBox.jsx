@@ -3,12 +3,7 @@ import "./MessageBox.css";
 import { BsFillSendFill } from "react-icons/bs";
 import TextareaAutosize from "react-textarea-autosize";
 
-const MessageBox = ({
-  handleSubmit,
-  handleInputChange,
-  inputValue,
-  loading,
-}) => {
+const MessageBox = ({ handleSubmit, handleInputChange, inputValue }) => {
   return (
     <>
       <section className="message--box">
