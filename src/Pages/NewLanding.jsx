@@ -11,6 +11,8 @@ const NewLanding = () => {
 	const [email, setEmail] = useState('');
 	const navigate = useNavigate();
 	return (
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		<PI title='Home' class='h-vh'>
 			<div
 				class='flex justify-between items-center  w-full  bg-black px-4 py-2'
@@ -29,6 +31,31 @@ const NewLanding = () => {
 			<section class='w-full h-full py-12 md:py-24 lg:py-32 xl:py-48 bg-black'>
 				<div class='px-4 md:px-6'>
 					<div class='grid gap-7 items-center justify-center'>
+=======
+=======
+>>>>>>> Stashed changes
+		<PI title='Home' class='h-full'>
+			<section class='w-full h-full py-12 md:py-24 lg:py-32 xl:py-48 bg-black'>
+				<div class='px-4 md:px-6'>
+					<div
+						class='flex justify-between items-center mb-8 w-full fixed top-0 left-0 bg-black px-4 py-2'
+						id='cwt01doa3o'
+					>
+						<div className='logo'>
+							<Link to='/'>
+								<img src={newlogo} alt='logo' />
+							</Link>
+						</div>
+						<h2 class='text-2xl font-semibold text-white'>LingoQL</h2>
+						<a class='text-white underline' href='/login'>
+							Log In
+						</a>
+					</div>
+					<div class='grid gap-7 items-center'>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 						<div class='flex flex-col justify-center space-y-4 text-center'>
 							<div class='space-y-2'>
 								<h1 class='text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500'>

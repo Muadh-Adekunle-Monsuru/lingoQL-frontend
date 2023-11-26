@@ -62,6 +62,14 @@ const Login = () => {
 					elevation={5}
 					style={{
 						display: 'grid',
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+						padding: 20,
+>>>>>>> Stashed changes
+=======
+						padding: 20,
+>>>>>>> Stashed changes
 						justifyContent: 'center',
 						borderRadius: '16px',
 						alignItems: 'space-between',
@@ -77,8 +85,18 @@ const Login = () => {
 						onClick={() =>
 							account.createOAuth2Session(
 								'google',
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 								'https://lingoql.onrender.com/chat',
 								'https://lingoql.onrender.com/login'
+=======
+								'http://localhost:5173/chat',
+								'http://localhost:5173/404'
+>>>>>>> Stashed changes
+=======
+								'http://localhost:5173/chat',
+								'http://localhost:5173/404'
+>>>>>>> Stashed changes
 							)
 						}
 					>

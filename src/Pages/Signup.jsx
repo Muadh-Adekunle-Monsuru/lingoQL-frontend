@@ -37,7 +37,15 @@ const Signup = () => {
 			setUser(loggedIn);
 			console.log(user);
 			toast.success('You successfully signed up!');
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 			navigate('/chat');
+=======
+			navigate('/upload/database');
+>>>>>>> Stashed changes
+=======
+			navigate('/upload/database');
+>>>>>>> Stashed changes
 		} catch (e) {
 			setLoading(false);
 			toast.error('Something went wrong, check your password and email');
@@ -65,6 +73,14 @@ const Signup = () => {
 					elevation={5}
 					style={{
 						display: 'grid',
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+						padding: 20,
+>>>>>>> Stashed changes
+=======
+						padding: 20,
+>>>>>>> Stashed changes
 						justifyContent: 'center',
 						alignItems: 'space-between',
 						borderRadius: '16px',
@@ -80,8 +96,18 @@ const Signup = () => {
 						onClick={() =>
 							account.createOAuth2Session(
 								'google',
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 								'https://lingoql.onrender.com/chat',
 								'https://lingoql.onrender.com/signup'
+=======
+								'http://localhost:5173/chat',
+								'http://localhost:5173/404'
+>>>>>>> Stashed changes
+=======
+								'http://localhost:5173/chat',
+								'http://localhost:5173/404'
+>>>>>>> Stashed changes
 							)
 						}
 					>

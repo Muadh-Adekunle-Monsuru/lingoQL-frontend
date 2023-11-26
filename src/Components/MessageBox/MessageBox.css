@@ -8,7 +8,7 @@
   font-size: 0.8rem;
   padding-left: 0;
   /* background: hsla(0, 0%, 0%, 0.671); */
-  background: transparent;
+  background: #343543;
   max-width: 70%;
   padding-right: 15px;
   outline: none;
@@ -17,7 +17,7 @@
 .message--input {
   padding: 0.9rem 1.2rem;
   border-radius: 18px;
-  background: transparent;
+  background: #343543;
   width: 100%;
   color: hsl(240, 1%, 81%);
   resize: none;
@@ -52,16 +52,19 @@
   border-radius: 50%;
   transition: all 0.5s ease;
 }
-
+.message--btn:disabled {
+  opacity: 0.2;
+}
 .message-box-wrapper {
   justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  position: absolute;
+  background: #343543;
+  position: fixed;
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   bottom: 0;
 }
 /* media queries */
