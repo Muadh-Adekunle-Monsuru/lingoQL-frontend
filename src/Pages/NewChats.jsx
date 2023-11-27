@@ -172,14 +172,14 @@ const NewChats = () => {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		data: { messageRequest },
+		data: messageRequest,
 	};
 	const sendRequest = async () => {
 		console.log(messageRequest);
 		try {
 			setLoading(true);
 			axios
-				.request(JSON.stringify(config))
+				.request(config)
 				.then((response) => {
 					setChatHistory((prev) => [
 						...prev,
@@ -269,24 +269,22 @@ const NewChats = () => {
 							</h2>
 							<div className='flex space-x-2 flex-wrap'>
 								<div
-									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer
-							
-							'
+									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
 									onClick={() => chipTexts("How's the weather today?")}
 								>
-									How's the weather today?
+									How much was made last week?
 								</div>
 								<div
 									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
 									onClick={() => chipTexts('Set an alarm for 7 AM.')}
 								>
-									Set an alarm for 7 AM.
+									How many users paid for X
 								</div>
 								<div
 									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
 									onClick={() => chipTexts('Find the nearest coffee shop.')}
 								>
-									Find the nearest coffee shop.
+									How much X sold last month ?
 								</div>
 								<div
 									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
