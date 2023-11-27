@@ -115,14 +115,14 @@ const NewChats = () => {
 		setMessage(value);
 	};
 	const handleSubmit = () => {
-		console.log('clicked');
 		if (message == '') return;
 		setChatHistory((prev) => [
 			...prev,
 			{ position: 'right', type: 'text', title: user.name, text: message },
 		]);
 
-		sendMessage(message);
+		// sendMessage(message);
+		sendRequest();
 
 		setMessage('');
 	};
@@ -159,6 +159,49 @@ const NewChats = () => {
 		}
 	};
 
+	const messageRequest = JSON.stringify({
+		'dbType': dbType,
+		'dbURI': dbURI,
+		'userInput': message,
+	});
+
+	const config = {
+		method: 'post',
+		maxBodyLength: Infinity,
+		url: 'https://lingoql-backend.onrender.com/api/lingo/query-your-db',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		data: { messageRequest },
+	};
+	const sendRequest = async () => {
+		try {
+			setLoading(true);
+			axios
+				.request(config)
+				.then((response) => {
+					setChatHistory((prev) => [
+						...prev,
+						{
+							position: 'left',
+							type: 'text',
+							title: 'LingoBot',
+							text: response.data.choices[0].message.content,
+						},
+					]);
+					console.log(JSON.stringify(response.data));
+				})
+				.catch((error) => {
+					console.log(error);
+					toast.error('Error making request');
+				});
+		} catch (e) {
+			console.log(e);
+			toast.error('Error making request');
+		} finally {
+			setLoading(false);
+		}
+	};
 	return (
 		<>
 			<div className='flex flex-col h-screen bg-black'>
@@ -196,17 +239,17 @@ const NewChats = () => {
 								<Fade {...TransitionProps} timeout={350}>
 									<Box
 										sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}
-										class='grid gap-4 bg-white p-3 rounded'
+										className='grid gap-4 bg-white p-3 rounded'
 									>
 										<p>User: {user.name}</p>
 										<button
-											class='inline-flex items-center bg-red-300  justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2'
+											className='inline-flex items-center bg-red-300  justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2'
 											onClick={handleOpen}
 										>
 											Edit Data
 										</button>
 										<button
-											class='inline-flex items-center bg-blue-300  justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2'
+											className='inline-flex items-center bg-blue-300  justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2'
 											onClick={() => logout()}
 										>
 											Sign Out
@@ -258,6 +301,7 @@ const NewChats = () => {
 							className='message-list'
 							lockable={false}
 							toBottomHeight={'100%'}
+							isShowChild={true}
 							dataSource={chatHistory}
 						/>
 					</div>{' '}
@@ -268,17 +312,17 @@ const NewChats = () => {
 						aria-describedby='modal-modal-description'
 					>
 						<Box sx={style}>
-							<div class=' max-w-xl mx-auto p-8 space-y-8 bg-white shadow-lg rounded-2xl  items-center my-10'>
-								<div class='space-y-4'>
-									<div class='text-center'>
-										<p class='text-zinc-500 dark:text-zinc-400 text-black'>
+							<div className=' max-w-xl mx-auto p-8 space-y-8 bg-white shadow-lg rounded-2xl  items-center my-10'>
+								<div className='space-y-4'>
+									<div className='text-center'>
+										<p className='text-zinc-500 dark:text-zinc-400 text-black'>
 											Provide information about your database
 										</p>
 									</div>
-									<div class='space-y-5'>
+									<div className='space-y-5'>
 										<div>
 											<label
-												class='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-black'
+												className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-black'
 												htmlFor='link-input'
 											>
 												Database Type
@@ -297,13 +341,13 @@ const NewChats = () => {
 										</div>
 										<div>
 											<label
-												class=' text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-black'
+												className=' text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-black'
 												htmlFor='link-input'
 											>
 												Link to Database
 											</label>
 											<input
-												class='my-2 flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-200 text-black'
+												className='my-2 flex h-10 w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-200 text-black'
 												id='link-input'
 												placeholder='Enter link here'
 												type='url'
@@ -311,7 +355,7 @@ const NewChats = () => {
 												onChange={(e) => setDbURI(e.target.value)}
 											/>
 											<button
-												class='inline-flex bg-black text-white items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full'
+												className='inline-flex bg-black text-white items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full'
 												type='submit'
 												onClick={() =>
 													saveParams({ userId: user.$id, dbType, dbURI })
@@ -326,18 +370,18 @@ const NewChats = () => {
 						</Box>
 					</Modal>
 				</main>
-				<footer class='p-2 border-t border-gray-200'>
-					<div class='py-2'>{loading && <LinearProgress />}</div>
+				<footer className='p-2 border-t border-gray-200'>
+					<div className='py-2'>{loading && <LinearProgress />}</div>
 
-					<div class='flex space-x-2'>
+					<div className='flex space-x-2'>
 						<input
-							class='flex h-15  w-full rounded-md border border-input bg-background px-3 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex-1'
+							className='flex h-15  w-full rounded-md border border-input bg-background px-3 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex-1'
 							placeholder='Type your message here...'
 							value={message}
 							onChange={(e) => setMessage(e.target.value)}
 						/>
 						<button
-							class='inline-flex items-center bg-slate-300 justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-5'
+							className='inline-flex items-center bg-slate-300 justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-5'
 							onClick={handleSubmit}
 						>
 							Send
