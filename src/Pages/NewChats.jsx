@@ -120,8 +120,6 @@ const NewChats = () => {
 			...prev,
 			{ position: 'right', type: 'text', title: user.name, text: message },
 		]);
-
-		// sendMessage(message);
 		sendRequest();
 
 		setMessage('');
@@ -137,7 +135,6 @@ const NewChats = () => {
 			messages: [{ role: 'user', content: message }],
 			temperature: 0.4,
 		};
-		setLoading(true);
 
 		try {
 			const response = await axios.post(endPoint, data, { headers: headers });
@@ -155,7 +152,6 @@ const NewChats = () => {
 			console.error(error);
 			toast.error('something went wrong!');
 		} finally {
-			setLoading(false);
 		}
 	};
 
@@ -172,11 +168,10 @@ const NewChats = () => {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		data: { messageRequest },
+		data: messageRequest,
 	};
 	const sendRequest = async () => {
 		try {
-			setLoading(true);
 			axios
 				.request(config)
 				.then((response) => {
@@ -186,10 +181,11 @@ const NewChats = () => {
 							position: 'left',
 							type: 'text',
 							title: 'LingoBot',
-							text: response.data.choices[0].message.content,
+							text: JSON.stringify(response.data),
 						},
 					]);
-					console.log(JSON.stringify(response.data));
+					handleLoad();
+					// console.log(JSON.stringify(response.data));
 				})
 				.catch((error) => {
 					console.log(error);
@@ -199,8 +195,11 @@ const NewChats = () => {
 			console.log(e);
 			toast.error('Error making request');
 		} finally {
-			setLoading(false);
+			handleLoad();
 		}
+	};
+	const handleLoad = () => {
+		setLoading((prev) => !prev);
 	};
 	return (
 		<>
@@ -211,7 +210,7 @@ const NewChats = () => {
 							<img src={newlogo} alt='logo' />
 						</Link>
 						<Link to='/'>
-							<h1 className='text-2xl font-bold text-white mx-5'>LinogoQL</h1>
+							<h1 className='text-2xl font-bold text-white mx-5'>LingoQL</h1>
 						</Link>
 					</div>
 					<div
@@ -262,36 +261,28 @@ const NewChats = () => {
 				</header>
 				<main className='flex-1 overflow-y-auto p-6'>
 					{chatHistory.length === 0 && (
-						<div className='flex flex-col items-center justify-center h-full space-y-4'>
-							<h2 className='text-4xl font-semibold text-white'>
+						<div className='flex flex-col items-center justify-center h-full space-y-4 '>
+							<h2 className='text-4xl font-semibold text-white text-center'>
 								How can I help you today?
 							</h2>
-							<div className='flex space-x-2 flex-wrap'>
+							<div className='flex space-x-2 flex-wrap sm:space-y-2 xs:grid sm:grid md:grid-cols-3 items-center justify-center'>
 								<div
-									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer
-							
-							'
-									onClick={() => chipTexts("How's the weather today?")}
+									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
+									onClick={() => chipTexts('How much was made last week?')}
 								>
-									How's the weather today?
+									How much was made last week?
 								</div>
 								<div
 									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
-									onClick={() => chipTexts('Set an alarm for 7 AM.')}
+									onClick={() => chipTexts('How many users paid for X')}
 								>
-									Set an alarm for 7 AM.
+									How many users paid for X
 								</div>
 								<div
 									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
-									onClick={() => chipTexts('Find the nearest coffee shop.')}
+									onClick={() => chipTexts('How much X sold last month ?')}
 								>
-									Find the nearest coffee shop.
-								</div>
-								<div
-									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
-									onClick={() => chipTexts("What's the news today?")}
-								>
-									What's the news today?
+									How much X sold last month ?
 								</div>
 							</div>
 						</div>

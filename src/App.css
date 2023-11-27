@@ -5,10 +5,13 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+html {
+	height: 100vh;
+}
 body {
 	font-family: 'Lexend Deca', sans-serif;
 	font-family: 'Poppins', sans-serif;
 	background: #343543;
-	height: 100vh;
+	height: 100%;
 	/* padding-bottom: 3rem; */
 }
