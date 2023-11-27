@@ -115,13 +115,11 @@ const NewChats = () => {
 		setMessage(value);
 	};
 	const handleSubmit = () => {
-		setLoading(true);
 		if (message == '') return;
 		setChatHistory((prev) => [
 			...prev,
 			{ position: 'right', type: 'text', title: user.name, text: message },
 		]);
-
 		sendRequest();
 
 		setMessage('');
@@ -173,8 +171,6 @@ const NewChats = () => {
 		data: messageRequest,
 	};
 	const sendRequest = async () => {
-		// console.log(messageRequest);
-		console.log(loading);
 		try {
 			axios
 				.request(config)
@@ -188,6 +184,7 @@ const NewChats = () => {
 							text: JSON.stringify(response.data),
 						},
 					]);
+					handleLoad();
 					// console.log(JSON.stringify(response.data));
 				})
 				.catch((error) => {
@@ -198,7 +195,11 @@ const NewChats = () => {
 			console.log(e);
 			toast.error('Error making request');
 		} finally {
+			handleLoad();
 		}
+	};
+	const handleLoad = () => {
+		setLoading((prev) => !prev);
 	};
 	return (
 		<>
