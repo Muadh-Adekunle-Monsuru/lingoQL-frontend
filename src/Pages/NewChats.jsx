@@ -172,7 +172,7 @@ const NewChats = () => {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		data: { messageRequest },
+		data: messageRequest,
 	};
 	const sendRequest = async () => {
 		console.log(messageRequest);
@@ -263,30 +263,28 @@ const NewChats = () => {
 				</header>
 				<main className='flex-1 overflow-y-auto p-6'>
 					{chatHistory.length === 0 && (
-						<div className='flex flex-col items-center justify-center h-full space-y-4'>
+						<div className='flex flex-col items-center justify-center h-full space-y-4 '>
 							<h2 className='text-4xl font-semibold text-white'>
 								How can I help you today?
 							</h2>
 							<div className='flex space-x-2 flex-wrap'>
 								<div
-									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer
-							
-							'
+									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
 									onClick={() => chipTexts("How's the weather today?")}
 								>
-									How's the weather today?
+									How much was made last week?
 								</div>
 								<div
 									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
 									onClick={() => chipTexts('Set an alarm for 7 AM.')}
 								>
-									Set an alarm for 7 AM.
+									How many users paid for X
 								</div>
 								<div
 									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
 									onClick={() => chipTexts('Find the nearest coffee shop.')}
 								>
-									Find the nearest coffee shop.
+									How much X sold last month ?
 								</div>
 								<div
 									className='px-4 py-2 rounded bg-gray-800 text-gray-100 cursor-pointer'
