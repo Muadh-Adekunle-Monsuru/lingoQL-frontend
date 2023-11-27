@@ -4,6 +4,7 @@ import './Pages.css';
 import PI from '../Components/PageIndicator/PI';
 import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
+import newlogo from '/newlogo.png';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -44,106 +45,117 @@ const Login = () => {
 	};
 	return (
 		<PI title='login'>
-			<Header />
-			<Container fixed maxWidth='sm'>
-				<h1
-					style={{
-						fontSize: '1.2em',
-						lineHeight: 1.1,
-						alignItems: 'center',
-						textAlign: 'center',
-						color: 'white',
-						marginBottom: 20,
-					}}
-				>
-					Log in
-				</h1>
-				<Paper
-					elevation={5}
-					style={{
-						display: 'grid',
-						justifyContent: 'center',
-						borderRadius: '16px',
-						alignItems: 'space-between',
-						alignContent: 'space-between',
-						padding: '10vh',
-						backgroundColor: '#f4f4f6',
-					}}
-				>
-					<br />
-					<Button
-						variant='outlined'
-						startIcon={<FcGoogle />}
-						onClick={() =>
-							account.createOAuth2Session(
-								'google',
-								'https://lingoql.onrender.com/chat',
-								'https://lingoql.onrender.com/login'
-							)
-						}
-					>
-						Continue with Google
-					</Button>
-					<br />
-					<p style={{ fontSize: 12, fontWeight: 500, textAlign: 'center' }}>
-						or
-					</p>
-					<br />
-					<p style={{ fontSize: 17, fontWeight: 500, textAlign: 'center' }}>
-						Login with Email
-					</p>
-					<br />
-					{loading && <LinearProgress />}
-
-					<Box
-						component='form'
-						sx={{
-							'& > :not(style)': { m: 1, width: '25ch' },
-						}}
-						noValidate
-						autoComplete='off'
+			<div class='bg-black h-screen'>
+				<header className='w-full bg-black py-4 px-6 flex items-center justify-between'>
+					<div className='logo flex items-center'>
+						<Link to='/'>
+							<img src={newlogo} alt='logo' />
+						</Link>
+						<Link to='/'>
+							<h1 className='text-2xl font-bold text-white mx-5'>LinogoQL</h1>
+						</Link>
+					</div>
+				</header>
+				<Container fixed maxWidth='sm'>
+					<h1
 						style={{
-							justifyContent: 'center',
+							fontSize: '1.2em',
+							lineHeight: 1.1,
 							alignItems: 'center',
-							display: 'grid',
+							textAlign: 'center',
+							color: 'white',
+							marginBottom: 20,
 						}}
-					>
-						<TextField
-							id='outlined-basic'
-							label='Email'
-							variant='outlined'
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							required
-						/>
-						<TextField
-							id='outlined-basic'
-							label='Password'
-							variant='outlined'
-							type='password'
-							autoComplete='current-password'
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							required
-						/>
-					</Box>
-					<br />
-					<Button
-						variant='contained'
-						onClick={() => login(email, password, user)}
 					>
 						Log in
-					</Button>
-					<div style={{ marginTop: 20 }}>
-						<p className='signup-writeup' style={{ textAlign: 'center' }}>
-							New Here?
-							<Link className='signup' to='/signup'>
-								Sign Up
-							</Link>
+					</h1>
+					<Paper
+						elevation={5}
+						style={{
+							display: 'grid',
+							justifyContent: 'center',
+							borderRadius: '16px',
+							alignItems: 'space-between',
+							alignContent: 'space-between',
+							padding: '10vh',
+							backgroundColor: '#f4f4f6',
+						}}
+					>
+						<br />
+						<Button
+							variant='outlined'
+							startIcon={<FcGoogle />}
+							onClick={() =>
+								account.createOAuth2Session(
+									'google',
+									'https://lingoql.onrender.com/chat',
+									'https://lingoql.onrender.com/login'
+								)
+							}
+						>
+							Continue with Google
+						</Button>
+						<br />
+						<p style={{ fontSize: 12, fontWeight: 500, textAlign: 'center' }}>
+							or
 						</p>
-					</div>
-				</Paper>
-			</Container>
+						<br />
+						<p style={{ fontSize: 17, fontWeight: 500, textAlign: 'center' }}>
+							Login with Email
+						</p>
+						<br />
+						{loading && <LinearProgress />}
+
+						<Box
+							component='form'
+							sx={{
+								'& > :not(style)': { m: 1, width: '25ch' },
+							}}
+							noValidate
+							autoComplete='off'
+							style={{
+								justifyContent: 'center',
+								alignItems: 'center',
+								display: 'grid',
+							}}
+						>
+							<TextField
+								id='outlined-basic'
+								label='Email'
+								variant='outlined'
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								required
+							/>
+							<TextField
+								id='outlined-basic'
+								label='Password'
+								variant='outlined'
+								type='password'
+								autoComplete='current-password'
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								required
+							/>
+						</Box>
+						<br />
+						<Button
+							variant='contained'
+							onClick={() => login(email, password, user)}
+						>
+							Log in
+						</Button>
+						<div style={{ marginTop: 20 }}>
+							<p className='signup-writeup' style={{ textAlign: 'center' }}>
+								New Here?
+								<Link className='signup' to='/signup'>
+									Sign Up
+								</Link>
+							</p>
+						</div>
+					</Paper>
+				</Container>
+			</div>
 		</PI>
 	);
 };
