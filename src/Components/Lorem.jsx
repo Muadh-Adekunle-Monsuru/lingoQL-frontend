@@ -16,21 +16,29 @@ export function LoremIpsum() {
 					</p>
 				</div>
 
-				<div className='p-3 m-5 border-dashed border-2 rounded-lg'>
+				<div className='p-3 m-5 border-dashed border-2 rounded-lg overflow-x-auto'>
 					<h2 className='text-3xl p-5 font-bold'>
 						<span className='gradient-text'>2. </span> Submit Your Database
 						Information
 					</h2>
-					<p className='p-5'>
+					<p className='p-5 '>
 						Provide details about your database, including its type. Currently,
 						we only support PostgreSQL and MySQL. Additionally, include a link
 						to your database with the format:
 						<br />
-						<code>postgresql://username:password@host:port/database</code>
+						<code>
+							postgresql://username:password
+							<br />
+							@host:port/database
+						</code>
 						<br />
 						or
 						<br />
-						<code>mysql://username:password@host:port/database</code>
+						<code>
+							mysql://username:password
+							<br />
+							@host:port/database
+						</code>
 					</p>
 				</div>
 				<div className='p-3 m-5 border-dashed border-2 rounded-lg'>
