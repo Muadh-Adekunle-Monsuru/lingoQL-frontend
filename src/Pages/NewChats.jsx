@@ -175,6 +175,7 @@ const NewChats = () => {
 		data: { messageRequest },
 	};
 	const sendRequest = async () => {
+		console.log(messageRequest);
 		try {
 			setLoading(true);
 			axios
@@ -186,7 +187,7 @@ const NewChats = () => {
 							position: 'left',
 							type: 'text',
 							title: 'LingoBot',
-							text: response.data.choices[0].message.content,
+							text: JSON.stringify(response.data),
 						},
 					]);
 					console.log(JSON.stringify(response.data));
