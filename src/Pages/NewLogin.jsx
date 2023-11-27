@@ -45,7 +45,7 @@ const Login = () => {
 	};
 	return (
 		<PI title='login'>
-			<div class='bg-black h-screen'>
+			<div className='bg-black h-screen'>
 				<header className='w-full bg-black py-4 px-6 flex items-center justify-between'>
 					<div className='logo flex items-center'>
 						<Link to='/'>

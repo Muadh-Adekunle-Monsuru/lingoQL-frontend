@@ -7,7 +7,7 @@
 @tailwind components;
 @tailwind utilities;
 .gradient-border-btn {
-	@apply relative overflow-hidden border-2 border-dashed border-transparent;
+	@apply relative overflow-hidden border-2 border-dashed border-white;
 
 	animation: gradient-border-animation 4s infinite;
 }
