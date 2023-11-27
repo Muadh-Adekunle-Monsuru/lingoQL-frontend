@@ -60,6 +60,9 @@ const NewLanding = () => {
 						</div>
 					</div>
 				</div>
+				<div className='container w-3/4 mx-auto mt-44'>
+					<LoremIpsum />
+				</div>
 			</section>
 		</PI>
 	);
