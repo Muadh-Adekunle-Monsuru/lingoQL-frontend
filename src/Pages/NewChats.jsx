@@ -179,7 +179,7 @@ const NewChats = () => {
 		try {
 			setLoading(true);
 			axios
-				.request(config)
+				.request(JSON.stringify(config))
 				.then((response) => {
 					setChatHistory((prev) => [
 						...prev,
@@ -263,7 +263,7 @@ const NewChats = () => {
 				</header>
 				<main className='flex-1 overflow-y-auto p-6'>
 					{chatHistory.length === 0 && (
-						<div className='flex flex-col items-center justify-center h-full space-y-4'>
+						<div className='flex flex-col items-center justify-center h-full space-y-4 '>
 							<h2 className='text-4xl font-semibold text-white'>
 								How can I help you today?
 							</h2>
