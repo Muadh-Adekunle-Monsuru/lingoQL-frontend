@@ -2,27 +2,12 @@
 	cursor: pointer;
 }
 .logo img {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 	width: 4rem;
 	/* margin: 1rem; */
 	/* margin-left: -0.5rem; */
 	/* margin-right: -0.6rem; */
 	/* filter: invert(100%); */
 	/* height: 5rem; */
-=======
-=======
->>>>>>> Stashed changes
-  width: 4rem;
-  /* margin: 1rem; */
-  /* margin-left: -0.5rem; */
-  /* margin-right: -0.6rem; */
-  /* filter: invert(100%); */
-  /* height: 5rem; */
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }
 .logo--text h1,
 .logo--text {
@@ -52,17 +37,8 @@
 	align-items: center;
 }
 .user {
-<<<<<<< Updated upstream
 	color: #fff;
 	font-size: 1.4rem;
-=======
-  color: #fff;
-  font-size: 1.4rem;
-  cursor: pointer;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }
 /* media queries */
 @media screen and (max-width: 570px) {

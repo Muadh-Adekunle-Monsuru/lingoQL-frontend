@@ -8,11 +8,4 @@ export const storage = new Storage(client);
 export const account = new Account(client);
 export const databases = new Databases(client);
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 export { ID, Query } from 'appwrite';
-=======
-=======
->>>>>>> Stashed changes
-export { ID } from 'appwrite';
->>>>>>> Stashed changes

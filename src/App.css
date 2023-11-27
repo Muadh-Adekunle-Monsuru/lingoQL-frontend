@@ -6,17 +6,9 @@
 	box-sizing: border-box;
 }
 body {
-<<<<<<< Updated upstream
 	font-family: 'Lexend Deca', sans-serif;
 	font-family: 'Poppins', sans-serif;
 	background: #343543;
 	height: 100vh;
 	/* padding-bottom: 3rem; */
-=======
-  font-family: "Lexend Deca", sans-serif;
-  font-family: "Poppins", sans-serif;
-  background: #343543;
-  /* height: 100vh; */
-  padding-bottom: 3rem;
->>>>>>> Stashed changes
 }

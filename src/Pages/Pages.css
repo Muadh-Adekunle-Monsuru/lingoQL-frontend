@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   text-align: center;
-  padding-bottom: 5rem;
   justify-content: center;
   position: relative;
 }
@@ -13,98 +12,6 @@
   text-align: center;
   flex-direction: column;
   padding-top: 6rem;
-  justify-content: center;
-}
-.chat--msg {
-  display: flex;
-}
-.chat--message {
-  display: flex;
-  flex-direction: column;
-  margin: 0 0.5rem;
-}
-.chat--bubble {
-  padding: 0.6rem 0.9rem;
-  margin: 0.5rem 0;
-  border-radius: 18px;
-  max-width: 85%;
-  /* pointer-events: none; */
-  cursor: pointer;
-  display: flex;
-  align-self: flex-start;
-  text-align: left;
-  width: auto;
-  line-height: 2;
-  position: relative;
-  border: none;
-  font-size: 0.8rem;
-  font-family: "Lexend Deca", sans-serif;
-  outline: none;
-}
-
-.bot--bubble::before {
-  content: "";
-  position: absolute;
-  top: 54.6%;
-  right: 99.45%;
-  border-width: 6.9px;
-  border-style: solid;
-  border-color: transparent hsl(240, 100%, 89%) transparent transparent;
-  transform: translateY(-80%);
-}
-.user--bubble::before {
-  content: "";
-  position: absolute;
-  top: 55%;
-  left: 98.85%;
-  border-width: 6.9px;
-  border-style: solid;
-  border-color: transparent hsl(240, 61%, 50%) transparent transparent;
-  transform: translateY(-80%) rotateY(180deg);
-}
-
-.bot--bubble {
-  padding: 0.6rem 0.9rem;
-  margin: 0.5rem 0;
-  max-width: 80%;
-  border-radius: 18px;
-  background: hsl(240, 100%, 89%);
-  /* pointer-events: none; */
-  cursor: pointer;
-  display: flex;
-  align-self: flex-start;
-  text-align: left;
-  width: auto;
-  color: hsl(0, 0%, 0%);
-  line-height: 2;
-  border: none;
-  font-size: 0.8rem;
-  font-family: "Lexend Deca", sans-serif;
-  outline: none;
-}
-.user--bubble {
-  padding: 0.6rem 0.9rem;
-  margin: 0.5rem 0;
-  border-radius: 18px;
-  background: hsl(240, 61%, 50%);
-  display: flex;
-  cursor: pointer;
-  max-width: 85%;
-  align-self: flex-end;
-  text-align: left;
-  /* pointer-events: none; */
-  width: auto;
-  color: hsl(0, 0%, 100%);
-  line-height: 2;
-  border: none;
-  font-size: 0.8rem;
-  font-family: "Lexend Deca", sans-serif;
-  outline: none;
-}
-.loading-dot-container {
-  position: relative;
-  display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -119,7 +26,6 @@
   margin: 0 2rem;
   border-radius: 18px;
   background: hsla(240, 2%, 53%, 0.13);
-  cursor: pointer;
   width: 100%;
   color: hsl(240, 1%, 81%);
   line-height: 2;
