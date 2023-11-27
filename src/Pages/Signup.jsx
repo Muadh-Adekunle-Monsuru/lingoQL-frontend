@@ -54,7 +54,7 @@ const Signup = () => {
 							<img src={newlogo} alt='logo' />
 						</Link>
 						<Link to='/'>
-							<h1 className='text-2xl font-bold text-white mx-5'>LinogoQL</h1>
+							<h1 className='text-2xl font-bold text-white mx-5'>LingoQL</h1>
 						</Link>
 					</div>
 				</header>
