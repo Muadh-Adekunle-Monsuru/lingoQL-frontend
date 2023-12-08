@@ -66,7 +66,7 @@ const NewChats = () => {
 				[
 					Query.orderDesc('$createdAt'),
 					Query.limit(1),
-					Query.equal('userId', [params.$id]),
+					Query.equal('userId', '65626aa2c1a7cc437240'),
 				]
 			);
 			setPrevious(response.documents);
